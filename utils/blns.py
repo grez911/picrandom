@@ -31,13 +31,16 @@ for name in names:
         pass
     try:
         with open("%s/%s" % (name, name), "w") as f:
-            f.write(name)
+            f.write(str(i))
             files.add(name)
         with open("%s/test.txt" % name, "w") as f:
-            f.write(i)
+            f.write(str(i))
         i += 1
     except:
         pass
+
+with open("test.txt", "w") as f:
+    f.write("root")
 
 print(dirs.difference(files))
 print(files.difference(dirs))
