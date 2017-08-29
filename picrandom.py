@@ -1,5 +1,43 @@
 import sys
+import time
 import os
+import threading
+
+class Spinner:
+    busy = False
+    delay = 0.2
+
+    def spinning_cursor(self):
+        while 1:
+            for cursor in '|/-\\': yield cursor
+
+    def __init__(self, delay=None):
+        self.spinner_generator = self.spinning_cursor()
+        if delay and float(delay): self.delay = delay
+
+    def spinner_task(self):
+        while self.busy:
+            sys.stdout.write(next(self.spinner_generator))
+            sys.stdout.flush()
+            time.sleep(self.delay)
+            sys.stdout.write('\b')
+            sys.stdout.flush()
+
+    def start(self):
+        self.busy = True
+        t = threading.Thread(target=self.spinner_task)
+        t.daemon = True
+        t.start()
+
+    def stop(self):
+        self.busy = False
+        time.sleep(self.delay)
+
+#spinner = Spinner()
+#spinner.start()
+# ... some long-running operations
+#time.sleep(3)
+#spinner.stop()
 
 def help():
     print("Picture randomizer. It copies 5 random pictures from a specified")
