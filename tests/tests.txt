@@ -1,12 +1,9 @@
-1. empty folder
-2. root folder
-3. folder with 3 pics
-4. folder with and without trailing slash
-5. file '    '
-6. file with characters --~`!@#$%^&*()_+=<>?:;'"[]{}*/\|龜фЙ漢\n\r\t
-7. symlink as dir and inside dir. symlink to file
-8. non-existent dir
-9. not a dir
-10. file
-11. filenames, dirnames with capitals
-12. -h -help --help --h help
+- "ask forgiveness not permission"
+- empty string as folder
+- root folder
+- folder with 3 pics
+- folder with and without trailing slash
+- non-existent dir
+- not a dir
+- -h -help --help --h help
+- can not read dir/file exception

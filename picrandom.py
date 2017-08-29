@@ -28,7 +28,10 @@ def get_all_files(path):
     return files_list
 
 def get_random_five(files_list):
-    
+    pass
+
+def copy(files_list):
+    pass
     
 def main():
     path = get_path(sys.argv)
