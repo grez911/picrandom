@@ -5,3 +5,4 @@ WORKDIR /home/user/tests
 RUN /bin/tar xzvf data.tar.gz
 RUN /bin/chown user:users -R data
 USER user
+WORKDIR /home/user

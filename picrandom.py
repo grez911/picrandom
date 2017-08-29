@@ -1,17 +1,17 @@
+#!/usr/bin/python3
 import sys
 import time
 import os
 import threading
 
 class Spinner:
-    busy = False
-    delay = 0.2
-
     def spinning_cursor(self):
         while 1:
             for cursor in '|/-\\': yield cursor
 
     def __init__(self, delay=None):
+        self.busy = False
+        self.delay = 0.2
         self.spinner_generator = self.spinning_cursor()
         if delay and float(delay): self.delay = delay
 
@@ -39,44 +39,44 @@ class Spinner:
 #time.sleep(3)
 #spinner.stop()
 
-def help():
-    print("Picture randomizer. It copies 5 random pictures from a specified")
-    print("directory to the /tmp. If the path has been omitted it will try")
-    print("to find pictures in the current directory.")
-    print()
-    print("Usage: python %s [/path/to/images]" % sys.argv[0])
+class Picrandom():
+    def __init__(self, argv):
+        if len(argv) > 2:
+            self.path = None
+        elif len(argv) == 2:
+            self.path = argv[1]
+        else:
+            path = os.getcwd()
 
-def get_path(args):
-    if len(args) > 2:
-        path = None
-    elif len(args) == 2:
-        path = args[1]
-    else:
-        path = os.getcwd()
-    return path
-        
-def is_path_correct(path):
-    return os.path.isdir(path):
+    def help(self):
+        print("Pictures randomizer. It copies 5 random pictures from a")
+        print("specified directory to the /tmp. If the path has been omitted")
+        print("it will try to find pictures in the current directory.")
+        print()
+        print("Usage: python %s [/path/to/images]" % sys.argv[0])
 
-def get_all_files(path):
-    files_list = []
-    for root, dirnames, filenames in os.walk(path):
-        subdir_list = [os.path.join(root, filename) for filename in filenames]
-        files_list.extend(subdir_list)
-    return files_list
+    def is_path_correct(self, path):
+        return os.path.isdir(path):
 
-def get_random_five(files_list):
-    pass
+    def get_all_files(self, path):
+        files_list = []
+        for root, dirnames, filenames in os.walk(path):
+            subdir_list = [os.path.join(root, filename) for filename in filenames]
+            files_list.extend(subdir_list)
+        return files_list
 
-def copy(files_list):
-    pass
+    def get_random(self, files_list):
+        pass
+
+    def copy(self, files_list):
+        pass
     
 def main():
-    path = get_path(sys.argv)
-    if not path:
-        help()
+    picrandom = Picrandom(sys.argv)
+    if not picrandom.path:
+        picrandom.help()
         sys.exit(1)
-    if not is_path_correct(path):
+    if not picrandom.is_path_correct(path):
         print("ERROR: Incorrect directory.")
         sys.exit(2)
     files_list = get_all_files(path)
