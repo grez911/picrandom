@@ -1,9 +1,4 @@
-- "ask forgiveness not permission"
 - empty string as folder
-- root folder
 - folder with 3 pics
-- folder with and without trailing slash
-- non-existent dir
-- not a dir
 - -h -help --help --h help
-- can not read dir/file exception
+- /tmp/picrandom -- is file. will it be deleted?
