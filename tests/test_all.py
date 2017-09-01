@@ -91,10 +91,10 @@ def test_copy():
     picrandom.copy(1000)
     assert len(os.listdir("/tmp/picrandom")) == 661
 
-    picrandom = Picrandom("tests/data/long_names")
-    picrandom.scan()
-    picrandom.copy()
-    assert len(os.listdir("/tmp/picrandom")) == 3
+#    picrandom = Picrandom("tests/data/long_names")
+#    picrandom.scan()
+#    picrandom.copy()
+#    assert len(os.listdir("/tmp/picrandom")) == 3
 
     picrandom = Picrandom("tests/data/symlinks")
     picrandom.scan()
