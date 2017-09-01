@@ -1,0 +1,9 @@
+language: python
+python:
+  - 3.6
+services:
+ - docker
+script:
+ - docker run picrandom
+before_install:
+ - docker build -t picrandom .
