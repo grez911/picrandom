@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+# Project page: https://github.com/grez911/picrandom
+
 import sys
 import time
 import os
@@ -6,6 +8,7 @@ import threading
 import shutil
 import random
 import argparse
+import platform
 
 class BadDirException(Exception):
     pass
@@ -119,9 +122,13 @@ def main():
             + "soon, see: https://pythonclock.org/")
         sys.exit()
 
+    if 'LINUX' not in platform.system().upper():
+        print("Linux only, sorry.")
+        sys.exit()
+
     spinner = Spinner()
     parser = argparse.ArgumentParser(description="Recursively scans a provided"
-        + " path and copies five images to /tmp/picrandom/")
+        + " path and copies five random files to the /tmp/picrandom/")
     parser.add_argument('dir', nargs='?', default=os.getcwd(),
         help="The search path. It will be the current folder if not specified")
     args = parser.parse_args()
