@@ -64,7 +64,7 @@ class Picrandom():
                 else:
                     if os.access(root, os.R_OK | os.X_OK):
                         print("\rCan't read file {}".format(_filename))
-                        self.bad_files += 1
+#                        self.bad_files += 1
             self.files.update(subdir)
             for dirname in dirnames:
                 _dirname = os.path.join(root, dirname)
