@@ -1,4 +1,0 @@
-- empty string as folder
-- folder with 3 pics
-- -h -help --help --h help
-- /tmp/picrandom -- is file. will it be deleted?
