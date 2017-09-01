@@ -2,6 +2,7 @@
 import os
 import sys
 import pytest
+import shutil
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "/.."))
 
@@ -75,7 +76,7 @@ def test_prepare_folder():
     picrandom.prepare_folder("tests/data/prepare_test/1/picrandom")
     assert len(os.listdir("tests/data/prepare_test/1/picrandom")) == 0
     picrandom.prepare_folder("tests/data/prepare_test/2/picrandom")
-    assert len(os.listdir("tests/data/prepare_test/2/picrandom")) == 0
+    assert len(os.listdir("tests/data/prepare_test/2/picrandom")) == 3
     picrandom.prepare_folder("tests/data/prepare_test/3/picrandom")
     assert len(os.listdir("tests/data/prepare_test/3/picrandom")) == 0
 
@@ -85,35 +86,42 @@ def test_copy():
     picrandom.copy()
     assert set(os.listdir("/tmp/picrandom")) \
             == {"0_test.txt", "1_test.txt", "test.txt"}
+    shutil.rmtree("/tmp/picrandom")
 
     picrandom = Picrandom("tests/data/complex_names")
     picrandom.scan()
     picrandom.copy(1000)
     assert len(os.listdir("/tmp/picrandom")) == 661
+    shutil.rmtree("/tmp/picrandom")
 
 #    picrandom = Picrandom("tests/data/long_names")
 #    picrandom.scan()
 #    picrandom.copy()
 #    assert len(os.listdir("/tmp/picrandom")) == 3
+#    shutil.rmtree("/tmp/picrandom")
 
     picrandom = Picrandom("tests/data/symlinks")
     picrandom.scan()
     picrandom.copy()
     assert set(os.listdir("/tmp/picrandom")) \
             == {"0_test.txt", "test.txt", "test3.txt"}
+    shutil.rmtree("/tmp/picrandom")
 
     picrandom = Picrandom("tests/data/symlinks/3/")
     picrandom.scan()
     picrandom.copy()
     assert set(os.listdir("/tmp/picrandom")) == {"test3.txt"}
+    shutil.rmtree("/tmp/picrandom")
 
     picrandom = Picrandom("tests/data/permissions")
     picrandom.scan()
     picrandom.copy(20)
     assert set(os.listdir("/tmp/picrandom")) \
             == {"4.txt", "5.txt", "6.txt", "7.txt", "77.txt", "55.txt"}
+    shutil.rmtree("/tmp/picrandom")
 
     picrandom = Picrandom("tests/data/empty")
     picrandom.scan()
     picrandom.copy()
     assert set(os.listdir("/tmp/picrandom")) == set()
+    shutil.rmtree("/tmp/picrandom")

@@ -107,14 +107,12 @@ class Picrandom():
 
     def prepare_folder(self, path="/tmp/picrandom/"):
         """
-        Deletes an existing file or a folder from a specified path
-        and creates an empty folder
+        Creates a directory if not exists
         """
         if os.path.isfile(path):
             os.remove(path)
-        elif os.path.isdir(path):
-            shutil.rmtree(path)
-        os.mkdir(path)
+        if not os.path.exists(path):
+            os.mkdir(path)
 
 def main():
     if sys.version_info < (3, 0):
