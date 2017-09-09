@@ -44,14 +44,22 @@ class Spinner:
 
 class Picrandom():
     def __init__(self, dir):
-        self.files      = set() # here will be set of all available files
-        self.bad_files  = 0     # counter for unreadable files
-        self.bad_dirs   = 0     # unreadable dirs (have no permission to read)
-        self.good_files = 0     # files that are readable
-        self.dir        = dir   # search path
+        """
+        Class attributes:
+        self.files - set of all available files
+        self.bad_files - counter for unreadable files
+        self.bad_dirs - unreadable dirs (have no permission to read)
+        self.good_files - files that are readable
+        self.dir - a search path
+        """
+        self.files = set()
+        self.bad_files = 0
+        self.bad_dirs = 0
+        self.good_files = 0
+        self.dir = dir
         if not os.path.isdir(self.dir):
             raise BadDirException("Directory is not correct or "
-                + "not accessible.")
+                                + "not accessible.")
 
     def scan(self):
         """
@@ -137,8 +145,8 @@ def main():
         spinner.stop()
         print("\rTotal number of files: {}".format(picrandom.good_files))
         picrandom.copy()
-        print("{} files copied to /tmp/picrandom/"\
-            .format(min(5, picrandom.good_files)))
+        copy_amount = min(5, picrandom.good_files)
+        print("{} files copied to /tmp/picrandom/".format(copy_amount))
     except Exception as err:
         print("ERROR: {}".format(err))
         sys.exit()
