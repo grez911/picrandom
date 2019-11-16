@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Project page: https://github.com/grez911/picrandom
+# Project page: https://github.com/sergei-bondarenko/picrandom
 
 import sys
 import time
